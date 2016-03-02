@@ -1,0 +1,106 @@
+* {
+  font-family: lato; }
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #f3f2f1; }
+
+#app {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+#weather {
+  height: 475px;
+  width: 325px;
+  background-color: #1e83e0;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 5px 25px 2px rgba(50, 50, 50, 0.35);
+  -moz-box-shadow: 0px 5px 25px 2px rgba(50, 50, 50, 0.35);
+  box-shadow: 0px 5px 25px 2px rgba(50, 50, 50, 0.35); }
+
+#foo {
+  padding-top: 235px;
+  color: white;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%); }
+
+.visual {
+  padding: 0;
+  margin-top: 0;
+  width: 100%;
+  height: 300px;
+  background-color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: relative; }
+  .visual .text {
+    position: absolute;
+    bottom: 0px; }
+    .visual .text p {
+      padding: 20px;
+      padding-top: 50px;
+      color: #626262;
+      font-size: 38px;
+      margin: 0; }
+
+.color {
+  color: #1e83e0; }
+
+.statistic {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 175px; }
+  .statistic .location-info {
+    text-align: center;
+    width: 100%; }
+    .statistic .location-info h3 {
+      font-size: 18px;
+      text-transform: uppercase;
+      color: white;
+      letter-spacing: 7px;
+      margin-bottom: 0px;
+      margin-top: 25px; }
+    .statistic .location-info p {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: white;
+      letter-spacing: 5px; }
+  .statistic .weather-info h3 {
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 10px;
+    margin-bottom: 0px;
+    margin-top: 35px; }
+    .statistic .weather-info h3 .now {
+      font-size: 22px;
+      text-transform: uppercase;
+      color: white;
+      padding-left: 25px;
+      padding-right: 22px; }
+
+/*
+#search-box {
+  position: absolute;
+  margin-top:20px;
+  background-color: white;
+  width: 325px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+**/

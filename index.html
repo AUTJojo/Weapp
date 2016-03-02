@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weather App</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/spin.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+
+    <script type="text/javascript" src="js/vue-moment.min.js"></script>
+
+  </head>
+  <body>
+
+
+    <!-- NAVBAR mit SEARCHBOX -->
+
+    <div id="app">
+      <div id="weather">
+        <div id="foo" v-if="!ready"></div>
+        <div class="visual" v-if="ready">
+
+          <div class="img">
+
+          </div>
+
+          <div class="text">
+            <p>
+              {{ text.pre }} <span class="color">{{ text.color }}</span> {{ text.post }}
+            </p>
+          </div>
+        </div>
+
+        <div class="statistic" v-if="ready">
+
+          <div class="location-info">
+            <h3>{{ location.city }}</h3>
+            <p>
+              {{date.weekday }} | {{ date.month }} {{ date.day }} | {{ date.time}}
+            </p>
+          </div>
+
+          <div class="weather-info">
+            <h3>{{ weather.min }}°<span class="now">{{ weather.current }}°</span>{{ weather.max }}°</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/app.js"></script>
+
+  </body>
+</html>
