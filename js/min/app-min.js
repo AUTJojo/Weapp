@@ -19,6 +19,24 @@ var opts = {
 var target = document.getElementById('foo');
 var spinner = new Spinner(opts).spin(target);
 
+jQuery(document).ready(function($) {
+  $(".search").focus(function(){
+     $(this).parent().parent().addClass("border");
+  });
+
+  $(".search").focusout(function(){
+     $(this).parent().parent().removeClass("border");
+  });
+
+  $('.search').keypress(function (e) {
+    if (e.which == 13) {
+      e.preventDefault();
+    }
+  });
+
+});
+
+
 new Vue({
   el: '#app',
   data: {
@@ -37,10 +55,12 @@ new Vue({
     time: null,
 
     date: {
-      weekday: 'Mondey',
+      weekday: 'Monday',
       month: 'Jan',
       day: '1',
       time: '13:37',
+      sunset: null,
+      sunrise: null,
     },
 
     text: {
@@ -55,6 +75,8 @@ new Vue({
       max: 4,
       rain: false,
       clouds: 0,
+      id: -1,
+      description: '',
     }
 
   },
@@ -63,7 +85,10 @@ new Vue({
     getText: function () {
       var temp = this.weather.current;
 
+      this.printData();
+
       var rain = this.weather.rain;
+      var clouds = this.weather.clouds;
 
       var ret = {
         pre: '',
@@ -250,7 +275,6 @@ new Vue({
                 break;
             }
             break;
-
           default:
             ret.pre =  "Not supposed to happen";
         }
@@ -262,7 +286,6 @@ new Vue({
       if(rain){
 
         var rand = Math.floor((Math.random() * 4) + 1);
-        console.log(rand);
 
         switch (true) {
           case rand == 1:
@@ -298,16 +321,14 @@ new Vue({
     },
 
     getLatLng: function () {
+
       navigator.geolocation.getCurrentPosition(
         function(position){
-          console.log('scheint zu gehen');
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
 
-          console.log(position.coords.latitude);
-          console.log(position.coords.longitude);
-
           this.getLocation();
+          this.getTime();
           this.getTemp();
         }.bind(this),
         function(){
@@ -315,6 +336,7 @@ new Vue({
           alert('Die Position konnte nicht ermittelt werden, bitte überprüfen Sie Ihre Brwosereinstellungen!');
         }
       );
+
     },
 
     getLocation: function () {
@@ -324,34 +346,54 @@ new Vue({
 
         this.location.city = results.results[4]['address_components'][0]['long_name'];
 				this.location.region = results.results[4]['address_components'][1]['long_name'];
-        this.location.state = results.results[4]['address_components'][2]['long_name'];
 			}.bind(this));
     },
 
     getTime: function () {
-      var datum = new Date();
 
       var ArrayTage = new Array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
       var ArrayMonate = new Array("JAN","FEB","MAR","APR","MAI","JUN","JUL", "AUG", "SEP", "OKT", "NOV", "DEZ");
 
-      this.date.weekday = ArrayTage[datum.getDay()];
-      this.date.month = ArrayMonate[datum.getMonth()];
-      this.date.day = datum.getDate();
-      this.date.time = datum.getHours() + ":" + datum.getMinutes();
-      /*
-
       $.getJSON('http://api.geonames.org/timezoneJSON?lat=' + this.lat + '1&lng=' + this.lng + '&username=autjojo', function(results) {
-        this.date.time = results.time;
-      }.bind(this));
+        var str = results.time;
+        var split1 = str.split(" ");
+        var split2 = split1[0].split('-');
 
-      **/
+        var monat = split2[1].replace(/^(0+)/g, '') -1;
+        var tag = split2[2].replace(/^(0+)/g, '');
+
+        var date = new Date();
+        date.setDate(tag);
+
+        var wochentag = date.getDay();
+
+        var sunsetUS = results.sunset.split(' ');
+        var sunriseUS = results.sunrise.split(' ');
+        var sunset = sunsetUS[1];
+        var sunrise = sunriseUS[1];
+
+        this.date.time = split1[1];
+        this.date.month = ArrayMonate[monat];
+        this.date.day = tag;
+        this.date.weekday = ArrayTage[wochentag];
+
+        this.date.sunset = sunset;
+        this.date.sunrise = sunrise;
+
+      }.bind(this));
     },
 
     getTemp: function () {
       $.getJSON('http://api.openweathermap.org/data/2.5/weather?lat=' + this.lat + '&lon=' + this.lng + '&APPID=a70390a56e504a6e42fbec688616f573', function(results) {
 				this.weather.current = Math.round(results['main']['temp'] - 273.15 );
 				this.weather.min = Math.round(results['main']['temp_min'] - 273.15 );
-				this.weather.max = Math.round(results['main']['temp_max'] - 273.15 );
+        this.weather.max = Math.round(results['main']['temp_max'] - 273.15 );
+
+        this.weather.clouds = results.clouds.all;
+        var weather = results.weather;
+
+        this.weather.id = weather[0].id;
+        this.weather.description = weather[0].description;
 
         this.getText();
         this.ready = true;
@@ -359,11 +401,43 @@ new Vue({
 			}.bind(this));
 
     },
+
+    printData: function (){
+      console.log("Current Temp: " + this.weather.current);
+      console.log("Min Temp: " + this.weather.min);
+      console.log("Max Temp: " + this.weather.max);
+      console.log("Regen: " + this.weather.rain);
+      console.log("Wolken: " + this.weather.clouds);
+      console.log("Wetter ID: " + this.weather.id);
+      console.log("Beschreibung: " + this.weather.description);
+
+
+      console.log("// - - - - - - - - - - - - - - - //");
+      console.log("Weekday: " + this.date.weekday);
+      console.log("Month: " + this.date.month);
+      console.log("Time: " + this.date.time);
+      console.log("Sonnenaufgang: " + this.date.sunrise);
+      console.log("Sonnenuntergang: " + this.date.sunset);
+    },
+
+    searchLocation: function (){
+      var searchInput = $(".search").val();
+
+
+
+      $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + searchInput, function(results) {
+        this.lat = results.results[0].geometry.location.lat;
+        this.lng = results.results[0].geometry.location.lng;
+
+        this.getLocation();
+        this.getTime();
+        this.getTemp();
+			}.bind(this));
+    },
   },
 
 	ready: function (){
     var spinner = new Spinner(opts).spin(target);
-    this.getTime();
     this.getLatLng();
 
 	},

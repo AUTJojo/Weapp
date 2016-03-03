@@ -6,20 +6,41 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/app.css">
 
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/moment.js"></script>
-    <script type="text/javascript" src="js/spin.js"></script>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-    <script type="text/javascript" src="js/vue-moment.min.js"></script>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/spin.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
   </head>
   <body>
-
-
-    <!-- NAVBAR mit SEARCHBOX -->
-
     <div id="app">
+
+      <nav>
+        <ul>
+          <li>
+              <h3><span class="bold">Cuther</span></h3>
+          </li>
+
+          <li>
+            <div class="form-wrapper">
+              <form>
+                  <input @keyup.enter="searchLocation()" class="search" placeholder="Search">
+              </form>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
       <div id="weather">
         <div id="foo" v-if="!ready"></div>
         <div class="visual" v-if="ready">
