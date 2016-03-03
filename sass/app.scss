@@ -20,7 +20,8 @@ body{
 
 #weather {
   @include center('x');
-  margin-top: 100px;
+  z-index: 5;
+  margin-top: 15px;
   height: 475px;
   width: 325px;
   background-color: $color-text;
@@ -33,6 +34,7 @@ body{
 // - - - - - - - - - - NAV - - - - - - - - - - //
 
 nav {
+  z-index: 10;
   background-color: white;
   border-bottom: 1px solid #eee;
   position: fixed;
@@ -92,6 +94,17 @@ nav {
   padding-top: 235px;
   color: white;
   @include center('x');
+}
+
+// - - - - - - - - - - - - - CONTENT - - - - - - - - - - - - - //
+
+// - - - - - - - - - - Wrapper - - - - - - - - - - //
+
+#content-wrapper {
+
+  margin-top: 60px;
+  height: 100%;
+  width: 100%;
 }
 
 // - - - - - - - - - - VISUAL - - - - - - - - - - //
@@ -174,6 +187,20 @@ nav {
     }
   }
 }
+
+// - - - - - - - - - - Transition - - - - - - - - - - //
+
+/*
+.fade-transition {
+  transition: all .5s ease;
+}
+
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
+*/
+
+// - - - - - - - - - - MEDIA - - - - - - - - - - //
 
 @media (max-width: 780px) {
   nav {

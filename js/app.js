@@ -36,6 +36,13 @@ jQuery(document).ready(function($) {
 
 });
 
+Vue.transition('weather', {
+  enterClass: 'flipInX',
+});
+
+Vue.transition('statistic', {
+  enterClass: 'bounceInUp',
+});
 
 new Vue({
   el: '#app',
@@ -324,6 +331,7 @@ new Vue({
 
       navigator.geolocation.getCurrentPosition(
         function(position){
+          this.ready = false;
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
 
@@ -423,7 +431,7 @@ new Vue({
     searchLocation: function (){
       var searchInput = $(".search").val();
 
-
+      this.ready = false;
 
       $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + searchInput, function(results) {
         this.lat = results.results[0].geometry.location.lat;

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Weather App</title>
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/app.css">
 
     <!-- Latest compiled and minified CSS -->
@@ -41,32 +42,34 @@
         </ul>
       </nav>
 
-      <div id="weather">
-        <div id="foo" v-if="!ready"></div>
-        <div class="visual" v-if="ready">
+      <div id="content-wrapper">
+        <div id="weather">
+          <div id="foo" v-if="!ready"></div>
+          <div class="animated visual" transition="weather" v-show="ready">
 
-          <div class="img">
+            <div class="img">
 
+            </div>
+
+            <div class="text">
+              <p>
+                {{ text.pre }} <span class="color">{{ text.color }}</span> {{ text.post }}
+              </p>
+            </div>
           </div>
 
-          <div class="text">
-            <p>
-              {{ text.pre }} <span class="color">{{ text.color }}</span> {{ text.post }}
-            </p>
-          </div>
-        </div>
+          <div class="animated statistic" transition="statistic" v-show="ready">
 
-        <div class="statistic" v-if="ready">
+            <div class="location-info">
+              <h3>{{ location.city }}</h3>
+              <p>
+                {{date.weekday }} | {{ date.month }} {{ date.day }} | {{ date.time}}
+              </p>
+            </div>
 
-          <div class="location-info">
-            <h3>{{ location.city }}</h3>
-            <p>
-              {{date.weekday }} | {{ date.month }} {{ date.day }} | {{ date.time}}
-            </p>
-          </div>
-
-          <div class="weather-info">
-            <h3>{{ weather.min }}°<span class="now">{{ weather.current }}°</span>{{ weather.max }}°</h3>
+            <div class="weather-info">
+              <h3>{{ weather.min }}°<span class="now">{{ weather.current }}°</span>{{ weather.max }}°</h3>
+            </div>
           </div>
         </div>
       </div>
