@@ -20,13 +20,68 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/img\/cloud.png": {
+	"\/img\/clouds.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 21065,
-		"inputAbbreviatedPath": "\/img\/cloud.png",
-		"outputAbbreviatedPath": "\/img\/cloud.png",
+		"initialSize": 20849,
+		"inputAbbreviatedPath": "\/img\/clouds.png",
+		"outputAbbreviatedPath": "\/img\/clouds.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/few_clouds.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 0,
+		"inputAbbreviatedPath": "\/img\/few_clouds.png",
+		"outputAbbreviatedPath": "\/img\/few_clouds.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/heavy_rain.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 21347,
+		"inputAbbreviatedPath": "\/img\/heavy_rain.png",
+		"outputAbbreviatedPath": "\/img\/heavy_rain.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/many_clouds.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 0,
+		"inputAbbreviatedPath": "\/img\/many_clouds.png",
+		"outputAbbreviatedPath": "\/img\/many_clouds.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/rain.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 0,
+		"inputAbbreviatedPath": "\/img\/rain.png",
+		"outputAbbreviatedPath": "\/img\/rain.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/sun.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 20398,
+		"inputAbbreviatedPath": "\/img\/sun.png",
+		"outputAbbreviatedPath": "\/img\/sun.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0

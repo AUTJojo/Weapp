@@ -80,10 +80,15 @@ new Vue({
       current: 0,
       min: 1,
       max: 4,
-      rain: false,
       clouds: 0,
+      thunderstorm: false,
+      drizzle: false,
+      rain: false,
+      heavy_rain: false,
+      snow: false,
       id: -1,
-      description: '',
+      img: 'sonne',
+
     }
 
   },
@@ -224,9 +229,9 @@ new Vue({
 
             switch (true) {
               case rand == 1:
-                ret.pre = "Some crazy motherfuckers will go ";
-                ret.color = "swimming ";
-                ret.post = "already.";
+                ret.pre = "Maybe ";
+                ret.color = " global warming ";
+                ret.post = " turns out to be true.";
                 break;
               case rand == 2:
                 ret.pre = "You could go to school ";
@@ -349,9 +354,6 @@ new Vue({
 
     getLocation: function () {
       $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.lat + ',' + this.lng, function(results) {
-
-        console.log(results);
-
         this.location.city = results.results[4]['address_components'][0]['long_name'];
 				this.location.region = results.results[4]['address_components'][1]['long_name'];
 			}.bind(this));
@@ -400,8 +402,57 @@ new Vue({
         this.weather.clouds = results.clouds.all;
         var weather = results.weather;
 
-        this.weather.id = weather[0].id;
-        this.weather.description = weather[0].description;
+        var id = weather[0].id;
+        this.weather.id = id;
+
+        this.weather.img = "";
+
+        if(id >= 200 && id <= 300){
+          this.weather.thunderstorm = true;
+          this.weather.img = "light_thunderstorm";
+
+          if(id > 212){
+            this.weather.img = "heavy_thunderstorm";
+          }
+        }
+
+        if(id >= 300 && id <= 400){
+          this.weather.drizzle = true;
+          this.weather.img = "light_drizzle";
+
+          if(id >= 312){
+            this.weather.img = "heavy_drizzle";
+          }
+        }
+
+        if(id >= 500 && id <= 600){
+          this.weather.rain = true;
+          this.weather.img = "rain";
+
+          if(id >= 302){
+            this.weather.heavy_rain = true;
+            this.weather.img = "heavy_rain";
+          }
+        }
+
+        if(id >= 600 && id <= 700){
+          this.weather.snow = true;
+          this.weather.img = "snow";
+        }
+
+        if(id >= 800 && id <= 804){
+          this.weather.img = "few_clouds";
+          if(id >= 803){
+            this.weather.img = "clouds";
+            if(id == 804){
+              this.weather.img = "many_clouds";
+            }
+          }
+        }
+
+        if(id == 800){
+          this.weather.img = "sun";
+        }
 
         this.getText();
         this.ready = true;
@@ -414,10 +465,12 @@ new Vue({
       console.log("Current Temp: " + this.weather.current);
       console.log("Min Temp: " + this.weather.min);
       console.log("Max Temp: " + this.weather.max);
+      console.log("ID: " + this.weather.id);
       console.log("Regen: " + this.weather.rain);
+      console.log("Snow: " + this.weather.snow);
+      console.log("Thunderstorm: " + this.weather.thunderstorm);
       console.log("Wolken: " + this.weather.clouds);
-      console.log("Wetter ID: " + this.weather.id);
-      console.log("Beschreibung: " + this.weather.description);
+      console.log("Bild: " + this.weather.img);
 
 
       console.log("// - - - - - - - - - - - - - - - //");
