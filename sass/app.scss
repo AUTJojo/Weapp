@@ -31,6 +31,19 @@ body{
   box-shadow:         0px 5px 25px 2px rgba(50, 50, 50, 0.35);
 }
 
+#second-page {
+  @include center('x');
+  z-index: 5;
+  margin-top: 50px;
+  height: 475px;
+  width: 325px;
+  background-color: $color-text;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 5px 25px 2px rgba(50, 50, 50, 0.35);
+  -moz-box-shadow:    0px 5px 25px 2px rgba(50, 50, 50, 0.35);
+  box-shadow:         0px 5px 25px 2px rgba(50, 50, 50, 0.35);
+}
+
 // - - - - - - - - - - NAV - - - - - - - - - - //
 
 nav {
@@ -55,10 +68,18 @@ nav {
     h3 {
         text-decoration: none;
         display: block;
-        font-weight: 400;
-        color: $color-text;
+        font-weight: 300;
+        color: $color-sec;
         text-align: center;
         padding: 0px 100px;
+
+    }
+
+    #e28f97
+
+    .bold {
+      font-weight: 800;
+      color: $color-text;
     }
 
     .form-wrapper {
@@ -113,21 +134,16 @@ nav {
   padding: 0;
   margin-top: 0;
   width: 100%;
-  height: 300px;
-  background-color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: relative;
 
-  .img{
-    height: 130px;
-    width: 275px;
-    margin-left: 20px;
-    color: #626262;
-    top: 25px;
+  .img-weather{
+    height: 125px;
+    width: 325px;
 
     img {
-      padding-top: 15px;
+      padding-top: 0px;
     }
   }
 
@@ -154,47 +170,65 @@ nav {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 175px;
+  height: 200px;
 
-  .location-info {
-    text-align: center;
-    width: 100%;
 
-    h3 {
-      font-size: 22px;
-      text-transform: uppercase;
-      color: white;
-      letter-spacing: 5px;
-      margin-bottom: 0px;
-      margin-top: 25px;
-    }
-
-    p {
-      font-size: 11px;
-      text-transform: uppercase;
-      color: white;
-      letter-spacing: 3px;
-      margin-top: 10px;
-    }
+  .img {
+    height: 225px;
+    width: 325px;
+    z-index: 10;
   }
 
-  .weather-info {
+  .info-wrapper {
+    height: 125px;
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 
-    h3 {
+
+    .location-info {
       text-align: center;
-      font-size: 18px;
-      text-transform: uppercase;
-      color: white;
-      letter-spacing: 10px;
-      margin-bottom: 0px;
-      margin-top: 35px;
+      width: 100%;
 
-      .now {
-        font-size: 28px;
+      h3 {
+        font-size: 22px;
         text-transform: uppercase;
-        color: white;
-        padding-left: 25px;
-        padding-right: 22px;
+        color: $color-text;
+        letter-spacing: 5px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+      }
+
+      p {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: $color-sec;
+        letter-spacing: 3px;
+        margin-top: 10px;
+      }
+    }
+
+    .weather-info {
+      h3 {
+        text-align: center;
+        font-size: 18px;
+        text-transform: uppercase;
+        color: $color-sec;
+        letter-spacing: 10px;
+        margin-bottom: 0px;
+        margin-top: 25px;
+
+        .now {
+          font-size: 28px;
+          text-transform: uppercase;
+          color: $color-text;
+          padding-left: 25px;
+          padding-right: 22px;
+        }
+      }
+
+      .to-second {
+        float: right;
       }
     }
   }
